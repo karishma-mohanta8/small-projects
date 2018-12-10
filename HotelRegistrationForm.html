@@ -1,0 +1,244 @@
+<html>
+<head>
+    <style>
+       fieldset{
+           background-color:deepskyblue;
+           font-weight: bold;
+           font-style: oblique;
+           text-align: center;
+           font-size:20px;
+       }
+        h1,legend{
+            text-align:center;
+            font-size:30px;
+        }
+        td{
+            font-weight: bold;
+            font-style: oblique;
+            font-size:20px;
+        }
+        .img1{
+            height: 300px;
+            width: 800px;
+        }
+        .img2{
+            height: 300px;
+            width: 500px;
+        }
+    </style>
+<script>
+function Register(){
+
+    document.getElementById("Regfrms").style.display="none";
+    document.getElementById("RegisterSummary").style.display="block";
+
+ cname=document.getElementById("custname");
+ cdate=document.getElementById("checkdate");
+ days=document.getElementById("totday");
+ per=document.getElementById("totper");
+ delux=document.getElementById("dxroom");
+ suite=document.getElementById("suiroom");
+ acc=document.getElementById("ac");
+ lock=document.getElementById("locker");
+ advanceamnt=document.getElementById("adv");
+
+var  roomtype="";
+var  aminities="";
+var  aamnt=0;
+var  totalamnt=0;
+
+if (delux.checked){
+	totalamnt=2500;
+    roomtype=delux.value;
+}
+if(suite.checked){
+	totalamnt=4000;
+	roomtype=suite.value;
+}
+if(acc.checked){
+	aamnt=200;
+	aminities+=acc.value+"<br>";
+	totalamnt=totalamnt+aamnt;
+}
+if(lock.checked){
+	aamnt=100;
+	totalamnt=totalamnt+aamnt;
+	aminities+=lock.value+"<br>";
+}
+
+document.getElementById("lblname").innerHTML=cname.value;
+document.getElementById("lbldate").innerHTML=cdate.value;
+document.getElementById("lblday").innerHTML=days.value;
+document.getElementById("lblper").innerHTML=per.value;
+document.getElementById("lblroom").innerHTML=roomtype;
+document.getElementById("lbladm").innerHTML=aminities;
+document.getElementById("lbladv").innerHTML=advanceamnt.value;
+if(per.value<=2) {
+    document.getElementById("totamt").innerHTML = totalamnt * (days.value);
+}
+else{
+    document.getElementById("totamt").innerHTML =(totalamnt+500)*days.value;
+}
+}
+</script>
+</head>
+<body>
+<div id="Regfrms">
+<h1>Hotel Registration Form</h1>
+<fieldset>
+<legend>Customer info</legend>
+    <table align="center">
+        <tr>
+            <td>
+                Customer Name:
+            </td>
+            <td>
+                <input type="text" id="custname">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Checkin Date:
+            </td>
+            <td>
+                <input type="date" id="checkdate">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total no of days:
+            </td>
+            <td>
+                <input type="number" id="totday">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total no. of persons:
+            </td>
+            <td>
+                <input type="number" id="totper">
+            </td>
+        </tr>
+    </table>
+</fieldset><br>
+<fieldset>
+<legend>Select Room Type</legend>
+<table align="center">
+    <tr>
+        <td align="center">
+            <img src="images/DeluxeRoom.jpg" class="img1"><br>
+            <input type="radio" id="dxroom" name="room" value=DeluxRoom> Delux Room (&#8377;2500/- per day)
+        </td>
+        <td align="center">
+            <img src="images/suite.jpg" class="img1"><br>
+            <input type="radio" id="suiroom" name="room" value=suiteRoom> Suite Room (&#8377;4000/- per day)
+        </td>
+    </tr>
+</table>
+</fieldset><br>
+<fieldset>
+<legend>Select Aminities</legend>
+<table align="center">
+    <tr>
+        <td align="center">
+            <img src="images/Ac.jpg" class="img2"><br>
+            <input type="checkbox" id="ac"  value=Ac>A/c (&#8377;200/- per day)
+        </td>
+        <td align="center">
+            <img src="images/locker.jpg" class="img2"><br>
+            <input type="checkbox" id="locker" value=Locker>Locker (&#8377;100/- per day)
+        </td>
+    </tr>
+</table>
+</fieldset>
+<fieldset align=center>
+<legend>Advance Amount</legend>
+<table align="center">
+    <tr>
+        <td>
+            Advance:
+        </td>
+        <td>
+            <input type=text id="adv" required>
+        </td>
+    </tr>
+</table><br>
+    <div align="center">
+        <input type=button  value="Register" onclick="Register()">
+    </div>
+</fieldset>
+</font>
+</div><br>
+<fieldset id="RegisterSummary" style="display:none">
+<h1>Summary</h1>
+    <table align="center">
+        <tr>
+            <td>
+                customer name:
+            </td>
+            <td>
+                <span id="lblname"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Checkin Date:
+            </td>
+            <td>
+                <span id="lbldate"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total no of Days:
+            </td>
+            <td>
+                <span id="lblday"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Total no of persons:
+            </td>
+            <td>
+                <span id="lblper"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Room type:
+            </td>
+            <td>
+                <span id="lblroom"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Adminities:
+            </td>
+            <td>
+                <span id="lbladm"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Advance:
+            </td>
+            <td>
+                <span id="lbladv"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Balance amount:
+            </td>
+            <td>
+                <span id="totamt"></span>
+            </td>
+        </tr>
+    </table><br>
+<input type=button value="print bill" onclick="window.print()">
+</fieldset>
+</body>
+</html>
